@@ -2,7 +2,7 @@
 
 OpenPTV is an open source software for 3D particle tracking velocimetry https://en.wikipedia.org/wiki/Particle_tracking_velocimetry
 
-Join us on http://www.openptv.net
+More information is on our website:  http://www.openptv.net Everyone is welcome to join our forum: https://groups.google.com/forum/#!forum/openptv and contribute on http://github.com/OpenPTV
 
 This is an attempt to create a single click installation. 
 
