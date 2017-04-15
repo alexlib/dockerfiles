@@ -13,6 +13,6 @@ This is an attempt to create a single click installation.
 
 See the screencast:
 
-<img src="https://raw.github.com/alexlib/gifs/master/screencast.gif" width="400" />
+<img src="https://github.com/alexlib/gifs/blob/master/screencast_dockerfile.gif" width="400" />
 
 
