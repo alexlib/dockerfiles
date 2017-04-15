@@ -11,6 +11,8 @@ This is an attempt to create a single click installation.
 2. Download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
 3. Open the zip file and run the `run_openptv_macosx.sh`
 
-See the screencast   
+See the screencast:
+
+<img src="https://raw.github.com/alexlib/gifs/master/screencast.gif" width="400" />
 
 
