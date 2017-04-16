@@ -10,6 +10,15 @@ This is an attempt to create a single click installation.
 1. Install Docker, from https://www.docker.com 
 2. Download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
 3. Open the zip file and run the `run_openptv_macosx.sh`
+4. In the shell you will see that you're in the pyptv_gui directory and ready to run the code. for the test use  
+
+      `python pyptv_gui.py /home/test_cavity`
+      
+5. In order to work on a folder what is on the host machine, you have add it to /Users if you're on Mac or C:\Users if you're on Windows. Then it's easy to access that folder, e.g.   
+
+    `python pyptv_gui.py /host/Users/alex/Downloads/test_cavity`
+    
+then everything is saved and persistent
 
 This image is built automatically on the DockerHub hub.docker.com/r/alexlib/openptv-python
 
