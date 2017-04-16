@@ -45,6 +45,8 @@ RUN conda update -y conda && \
     enable \
     nose \
     kiwisolver && \
+    conda clean --tarballs && \
+    conda clean --packages && \
     apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libglu1-mesa \
