@@ -11,6 +11,8 @@ This is an attempt to create a single click installation.
 2. Download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
 3. Open the zip file and run the `run_openptv_macosx.sh`
 
+This image is built automatically on the DockerHub hub.docker.com/r/alexlib/openptv-python
+
 See the screencast:
 
 <img src="https://github.com/alexlib/gifs/blob/master/screencast_dockerfile.gif" width="400" />
