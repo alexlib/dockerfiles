@@ -83,5 +83,5 @@ ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
 
 WORKDIR /home/openptv-python/pyptv_gui
 
-CMD python pyptv_gui.py /home/test_cavity
+# CMD python pyptv_gui.py /home/test_cavity
 
