@@ -36,6 +36,9 @@ WORKDIR /home
 
 RUN conda update -y conda && \
     conda install -y \
+    gcc_linux-64 \
+    gxx_linux-64 \
+    gfortran_linux-64 \
     numpy \
     scipy \
     cython \
