@@ -24,6 +24,20 @@ This is an attempt to create a single click installation.
     
 then everything is saved and persistent
 
+If you experience the following error:
+```
+File "/opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py", line 138, in <module>
+    cbrt = ufunc(np.cbrt)
+```
+the workaround (for the moment, before numpy will be updated inside miniconda docker) is to open the file using `nano` editor
+``` 
+      nano /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py
+```
+and comment out the line 138:
+```
+    #cbrt = ufunc(np.cbrt)
+ ```
+
 This image is built automatically on the DockerHub hub.docker.com/r/alexlib/openptv-python
 
 See the screencast:
