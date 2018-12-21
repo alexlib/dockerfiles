@@ -77,14 +77,14 @@ RUN cd /home && \
     cd /home/pyptv/openptv/py_bind && \
     python setup.py build_ext -I/usr/local/include -L/usr/local/lib && \
     python setup.py install && \
-    cd /home/pyptv/pyptv && \
+    cd /home/pyptv && \
     python setup.py install && \
     cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
     
 ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
 
-WORKDIR /home/pyptv/pyptv_gui
+WORKDIR /home/pyptv/pyptv/
 
 # CMD python pyptv_gui.py /home/test_cavity
 
