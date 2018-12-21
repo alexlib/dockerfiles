@@ -28,7 +28,7 @@
 
 
 FROM continuumio/miniconda
-MAINTAINER Alex Liberzon <alexlib@eng.tau.ac.il>
+MAINTAINER Alex Liberzon <alexlib@tauex.tau.ac.il>
 
 ENV LANG en-US
 
@@ -67,18 +67,16 @@ RUN conda update -y conda && \
     make install
     
 RUN cd /home && \
-    git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/openptv.git && \
-    cd /home/openptv/liboptv && mkdir build && cd build && \
+    git clone --depth 1 -b master --recursive --single-branch https://github.com/alexlib/pyptv.git && \
+    cd /home/pyptv/openptv/liboptv && mkdir build && cd build && \
     cmake ../ -G "Unix Makefiles" && \
     make && \
     make verify && \
     make install && \
-    cd /home/openptv/py_bind && \
+    cd /home/pyptv/openptv/py_bind && \
     python setup.py build_ext -I/usr/local/include -L/usr/local/lib && \
     python setup.py install && \
-    cd /home && \
-    git clone --depth 1 -b master --single-branch https://github.com/alexlib/pyptv.git && \
-    cd /home/pyptv/pyptv_gui && \
+    cd /home/pyptv/pyptv/pyptv_gui && \
     python setup.py install && \
     cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
