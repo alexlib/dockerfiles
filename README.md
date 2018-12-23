@@ -11,7 +11,7 @@ This is an attempt to create a simpler installation option that is uniform for a
 not require full VM like our Virtualbox image (3.5 Gb)
 
 
-## Installation with Docker image from DockerHub, on Windows in 8 simple steps
+## Installation with Docker image from DockerHub, on Windows in 7 steps
 1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
 2. Open PowerShell in Adminstrative Mode
 3. Run and wait for about 5 min (it's approximately 900 Mb download)  
@@ -23,43 +23,14 @@ not require full VM like our Virtualbox image (3.5 Gb)
 6. Install Xserver, e.g. following https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde
 5. Run Xserver and run PyPTV:  
        `docker run --rm -it --name openptv -e DISPLAY=$DISPLAY openptv`  
-6. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment. 
-7. Fix a small glitch, comment out the line 138 in the file `ufunc.py`: Run   
-       `nano /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py` 
-and comment it out or delete this line:  
-        `\# cbrt = ufunc(np.cbrt)`
-8. Run the software:  
+6. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
+7. Run the software:  
        `python pyptv_gui.py ../../test_cavity`
  
 
-## If you don't want to pull the image, you can build Docker it locally (15 min)
+## If you don't want to pull the image, you can build the docker image locally (10 min)
 2. Clone the repository `git clone https://github.com/alexlib/dockerfiles` or download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
 3. Unzip it and run the in the terminal: `bash run_openptv_macosx.sh`
-4. In the shell you will see that you're in the pyptv_gui directory and ready to run the code. for the test use  
-
-      `python pyptv_gui.py /home/test_cavity`
-      
-5. In order to work on a folder what is on the host machine, you have add it to /Users if you're on Mac or C:\Users if you're on Windows. Then it's easy to access that folder, e.g.   
-
-    `python pyptv_gui.py /host/Users/alex/Downloads/test_cavity`
-    
-then everything is saved and persistent
-
-If you experience the following error:
-```
-File "/opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py", line 138, in <module>
-    cbrt = ufunc(np.cbrt)
-```
-the workaround (for the moment, before numpy will be updated inside miniconda docker) is to open the file using `nano` editor
-``` 
-      nano /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py
-```
-and comment out the line 138:
-```
-    #cbrt = ufunc(np.cbrt)
- ```
-
-This image is built automatically on the DockerHub hub.docker.com/r/alexlib/openptv-python
 
 See the screencast:
 
