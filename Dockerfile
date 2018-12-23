@@ -105,3 +105,5 @@ WORKDIR /home/pyptv/pyptv/
 
 # CMD python pyptv_gui.py /home/test_cavity
 
+CMD ["python", "./pyptv_gui.py", "../../test_cavity"]
+
