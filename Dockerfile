@@ -24,7 +24,24 @@
 #    docker run --rm -it --name openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix openptv
 # 
 #   Save these commands in a run_openptv.sh and make it executable
-#    
+# -------------------------------------------------------------------
+#   On Windows:
+#   # read https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde
+# 
+# USAGE:
+#   # Use PowerShell in administrtive mode
+#   # Run Docker Linux Containers
+#	# Download Dockerfile
+# 
+#   ipconfig
+#   set-variable -name DISPLAY -value XX.XX.XXX.XXX:0.0
+#   # Run VcXSRV 
+#	docker build -t openptv .
+#   docker run --rm -it --name openptv -e DISPLAY=$DISPLAY openptv
+#   # Now in bash:
+#       python pyptv_gui.py ../../test_cavity
+#
+#   # If error, you may need to fix the dask/ufunc.py as shown above
 
 
 FROM continuumio/miniconda
