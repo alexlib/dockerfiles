@@ -47,7 +47,7 @@ RUN conda update -y conda && \
     chaco \
     enable \
     nose \
-    kiwisolver && \
+    kiwisolver \
     future && \
     conda clean --tarballs && \
     conda clean --packages && \
