@@ -98,6 +98,8 @@ RUN cd /home && \
     python setup.py install && \
     cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
+
+RUN sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py
     
 ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
 
