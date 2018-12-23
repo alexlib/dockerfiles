@@ -15,21 +15,21 @@ not require full VM like our Virtualbox image (3.5 Gb)
 1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
 2. Open PowerShell in Adminstrative Mode
 3. Run and wait for about 5 min (it's approximately 900 Mb download)  
-       docker pull alexlib/openptv-python
+       `docker pull alexlib/openptv-python`
 4. Find out your IP using (here XX.XX.XXX.XXX):  
-       ipconfig
-5. Define DISPLAY variable  
-       set-variable -name DISPLAY -value XX.XX.XXX.XXX:0.0  
+       `ipconfig`
+5. Define `DISPLAY` variable  
+       `set-variable -name DISPLAY -value XX.XX.XXX.XXX:0.0`  
 6. Install Xserver, e.g. following https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde
 5. Run Xserver and run PyPTV:  
-       docker run --rm -it --name openptv -e DISPLAY=$DISPLAY openptv  
+       `docker run --rm -it --name openptv -e DISPLAY=$DISPLAY openptv`  
 6. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment. 
 7. Fix a small glitch, comment out the line 138 in the file `ufunc.py`: Run   
-       nano /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py 
+       `nano /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py` 
 and comment it out or delete this line:  
-        \# cbrt = ufunc(np.cbrt)
+        `\# cbrt = ufunc(np.cbrt)`
 8. Run the software:  
-       python pyptv_gui.py ../../test_cavity
+       `python pyptv_gui.py ../../test_cavity`
  
 
 ## If you don't want to pull the image, you can build Docker it locally (15 min)
