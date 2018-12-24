@@ -26,6 +26,10 @@ not require full VM like our Virtualbox image (3.5 Gb)
 6. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 7. Run the software:  
        `python pyptv_gui.py ../../test_cavity`
+       
+If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:     
+        `sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py`
+
  
 
 ## If you don't want to pull the image, you can build the docker image locally (10 min)
