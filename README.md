@@ -28,7 +28,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
 6. Install Xserver, e.g. following https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde
 5. Run Xserver and run PyPTV: 
 
-       docker run --rm -it --name openptv -e DISPLAY=$DISPLAY openptv
+       docker run --rm -it --name openptv -e DISPLAY=$DISPLAY alexlib/openptv-python
        
 6. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 7. Run the software:  
@@ -59,7 +59,7 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
        
 6. Run the docker image  
 
-       docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users openptv  
+       docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users alexlib/openptv-python  
 
 7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 8. Run the software:  
