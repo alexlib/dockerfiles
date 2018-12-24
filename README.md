@@ -11,7 +11,7 @@ This is an attempt to create a simpler installation option that is uniform for a
 not require full VM like our Virtualbox image (3.5 Gb)
 
 
-## Installation with Docker image from DockerHub, on Windows in 7 steps
+## Installation with Docker image from DockerHub, on Windows
 1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
 2. Open PowerShell in Adminstrative Mode
 3. Run and wait for about 5 min (it's approximately 900 Mb download)  
@@ -30,9 +30,26 @@ not require full VM like our Virtualbox image (3.5 Gb)
 If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:     
         `sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py`
 
- 
+## Installation with Docker image from DockerHub, on Mac OS X
+1. Install Docker https://docs.docker.com/docker-for-mac/
+2. Run in the Terminal for about 5 min (it's approximately 900 Mb download)  
+       `docker pull alexlib/openptv-python`
+3. Find out your IP using (here XX.XX.XXX.XXX):  
+       `IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')`
+4. Run XQuartz  
+       `open -a XQuartz`
+5. Add IP to the list of known hosts
+       `open -a XQuartz`
+6. Run the docker image
+       `docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users openptv``  
+7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
+8. Run the software:  
+       `python pyptv_gui.py ../../test_cavity`
+       
+If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:     
+        `sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py`
 
-## If you don't want to pull the image, you can build the docker image locally (10 min)
+## If you want to build the image locally
 2. Clone the repository `git clone https://github.com/alexlib/dockerfiles` or download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
 3. Unzip it and run the in the terminal: `bash run_openptv_macosx.sh`
 
