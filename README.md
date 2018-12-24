@@ -40,10 +40,13 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
        `open -a XQuartz`
 5. Add IP to the list of known hosts
        `open -a XQuartz`
-6. Run the docker image
+6. Run the docker image  
+
        `docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users openptv``  
+
 7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 8. Run the software:  
+
        `python pyptv_gui.py ../../test_cavity`
        
 If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:     
