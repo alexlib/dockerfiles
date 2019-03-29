@@ -90,18 +90,17 @@ RUN cd /home && \
     cmake ../ -G "Unix Makefiles" && \
     make && \
     make verify && \
-    make install && \
     cd /home/pyptv/openptv/py_bind && \
-    python setup.py build_ext -I/usr/local/include -L/usr/local/lib && \
+    python setup.py prepare && \
     python setup.py install && \
+    cd test && \
+    nosetests --verbose
     cd /home/pyptv && \
     python setup.py install && \
     cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
-
-RUN sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py
     
-ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
+# ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
 
 WORKDIR /home/pyptv/pyptv/
 
