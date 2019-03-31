@@ -44,60 +44,59 @@
 #   # If error, you may need to fix the dask/ufunc.py as shown above
 
 
-FROM continuumio/miniconda
+FROM conda/miniconda2
 MAINTAINER Alex Liberzon <alexlib@tauex.tau.ac.il>
 
-ENV LANG en-US
+# ENV LANG en-US
 
 WORKDIR /home
 
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    libglu1-mesa \
+    libgl1-mesa-dev \
+    mesa-common-dev \
+    freeglut3-dev \
+    libgtk2.0-dev
+
 RUN conda update -y conda && \
     conda install -y \
+    pip \
     gcc_linux-64 \
     gxx_linux-64 \
     gfortran_linux-64 \
-    numpy \
+    numpy=1.16.1 \
     scipy \
     cython \
-    scikit-image \
-    pyqt \
-    chaco \
-    enable \
+    qt=4 \
+    swig \
     nose \
     kiwisolver \
     future && \
     conda clean --tarballs && \
-    conda clean --packages && \
-    apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libglu1-mesa \
-    libgtk2.0-dev \
-    nano \
-    cmake && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    wget https://github.com/libcheck/check/files/71408/check-0.10.0.tar.gz && \
-    tar -xvf check-0.10.0.tar.gz && \
-    rm check-0.10.0.tar.gz && \
-    cd check-0.10.0 && \
-    ./configure && \
-    make && \
-    make install
-    
+    conda clean --packages
+
 RUN cd /home && \
-    git clone --depth 1 -b master --recursive --single-branch https://github.com/alexlib/pyptv.git && \
-    cd /home/pyptv/openptv/liboptv && mkdir build && cd build && \
-    cmake ../ -G "Unix Makefiles" && \
-    make && \
-    make verify && \
-    cd /home/pyptv/openptv/py_bind && \
-    python setup.py prepare && \
-    python setup.py install && \
-    cd test && \
-    nosetests --verbose
+    git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/openptv.git
+
+RUN cd /home/openptv/py_bind  && python setup.py prepare && python setup.py install
+
+RUN cd /home/openptv/py_bind/test && nosetests --verbose
+
+RUN conda install cloudpickle dask[array] networkx PyWavelets matplotlib scikit-image --no-deps
+
+RUN pip install chaco enable 
+
+RUN cd /home && \
+    git clone --depth 1 -b master --single-branch https://github.com/alexlib/pyptv.git && \
     cd /home/pyptv && \
     python setup.py install && \
-    cd /home && \
+    cd tests && \
+    nosetests --verbose
+
+RUN cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
     
 # ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
