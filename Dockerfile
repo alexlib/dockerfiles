@@ -43,56 +43,33 @@
 #
 #   # If error, you may need to fix the dask/ufunc.py as shown above
 
-
-FROM conda/miniconda2
-MAINTAINER Alex Liberzon <alexlib@tauex.tau.ac.il>
-
-# ENV LANG en-US
+FROM ubuntu:18.04
+MAINTAINER "Alex Liberzon" <alexlib@tauex.tau.ac.il>
 
 WORKDIR /home
 
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends \
-    build-essential \
-    git \
-    libglu1-mesa \
-    libgl1-mesa-dev \
-    mesa-common-dev \
-    freeglut3-dev \
-    libgtk2.0-dev
+# Prerequisites
+RUN \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y python python-pip python-dev
 
-RUN conda update -y conda && \
-    conda install -y \
-    pip \
-    gcc_linux-64 \
-    gxx_linux-64 \
-    gfortran_linux-64 \
-    numpy=1.16.1 \
-    scipy \
-    cython \
-    qt=4 \
-    swig \
-    nose \
-    kiwisolver \
-    future && \
-    conda clean --tarballs && \
-    conda clean --packages
+RUN pip install numpy==1.16.1 cython nose pyyaml fonttools
+RUN pip install optv==0.2.4
+RUN apt-get -y install python-qt4-gl libx11-dev g++ libpcre3 libpcre3-dev swig && \
+    apt-get -y install libglu1-mesa libgl1-mesa-dev mesa-common-dev freeglut3-dev libgtk2.0-dev
+# RUN apt-get -y install python-enable
+# RUN apt-get -y install python-chaco
+RUN pip install enable
+RUN pip install chaco
+RUN apt-get -y install git
+# RUN pip install pyptv
 
-RUN cd /home && \
-    git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/openptv.git
-
-RUN cd /home/openptv/py_bind  && python setup.py prepare && python setup.py install
-
-RUN cd /home/openptv/py_bind/test && nosetests --verbose
-
-RUN conda install cloudpickle dask[array] networkx PyWavelets matplotlib scikit-image --no-deps
-
-RUN pip install chaco enable 
 
 RUN cd /home && \
     git clone --depth 1 -b master --single-branch https://github.com/alexlib/pyptv.git && \
     cd /home/pyptv && \
-    python setup.py install && \
+    pip install . && \
     cd tests && \
     nosetests --verbose
 
@@ -106,4 +83,3 @@ WORKDIR /home/pyptv/pyptv/
 # CMD python pyptv_gui.py /home/test_cavity
 
 CMD ["python", "./pyptv_gui.py", "../../test_cavity"]
-
