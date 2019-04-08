@@ -78,8 +78,8 @@ RUN cd /home && \
     
 # ENV LD_LIBRARY_PATH /usr/local/lib:${LD_LIBRARY_PATH}
 
-WORKDIR /home/pyptv/pyptv/
+WORKDIR /home/
 
 # CMD python pyptv_gui.py /home/test_cavity
 
-CMD ["python", "./pyptv_gui.py", "../../test_cavity"]
+CMD ["ptvgui", "test_cavity"]
