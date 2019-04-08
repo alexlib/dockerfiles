@@ -79,11 +79,7 @@ and inside `xterm` try:
        xhost + 127.0.0.1
        docker run --rm -it -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix alexlib/openptv-python
 
-7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
-8. Run the software:  
-
-       ptvgui test_cavity
-       
+You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 
 ## If you want to build the image locally
 2. Clone the repository `git clone https://github.com/alexlib/dockerfiles` or download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
