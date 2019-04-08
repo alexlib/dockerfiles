@@ -67,6 +67,17 @@ Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/
 6. Run the docker image  
 
        docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users alexlib/openptv-python  
+       
+You should see now the PyPTV window open (see below)
+
+Warning: some users reported that it's better to open `xterm` and type the following set of commands in it (not in a terminal), so open the `xterm`: 
+
+       open -a XQuartz
+       
+and inside `xterm` try:
+
+       xhost + 127.0.0.1
+       docker run --rm -it -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix alexlib/openptv-python
 
 7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 8. Run the software:  
