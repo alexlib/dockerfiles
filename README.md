@@ -52,10 +52,17 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
 4. Run XQuartz  
 
        open -a XQuartz
-       
+
+Warning: check that XQuartz -> Preferences -> Security has both options checked in: Allow Network Connections should be ON.
+
 5. Add IP to the list of known hosts
 
        xhost + $IP
+       
+Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/X11/xhost` by Homebrew or MacPorts and `/usr/X11/bin/xhost` by direcdt downloading and installation. Make sure you know which is controlling or try both, e.g. 
+
+       /usr/X11/bin/xhost + $IP
+       /opt/X11/bin/xhost + $IP
        
 6. Run the docker image  
 
@@ -64,11 +71,8 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
 7. You should see that you're now inside the `(base) root@594fb74c31f1:/home/pyptv/pyptv#` or similar environment.  
 8. Run the software:  
 
-       python pyptv_gui.py ../../test_cavity
+       ptvgui test_cavity
        
-If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:  
-
-        sed -i 's/cbrt/#cbrt/' /opt/conda/lib/python2.7/site-packages/dask/array/ufunc.py
 
 ## If you want to build the image locally
 2. Clone the repository `git clone https://github.com/alexlib/dockerfiles` or download this repository as a zip file, https://github.com/alexlib/dockerfiles/archive/master.zip
