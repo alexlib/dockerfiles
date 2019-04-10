@@ -57,9 +57,9 @@ Check that XQuartz -> Preferences -> Security has both options checked in: Allow
        display_number=`ps -ef | grep "Xquartz :\d" | grep -v xinit | awk '{ print $9; }'`
 
 
-5. Add the IP to the list of known hosts:
+5. Add the `hostname` to the list of known hosts (safer then `xhost + $ip`):
 
-       /usr/X11/bin/xhost + $ip
+       /usr/X11/bin/xhost + $(hostname)
        
 Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/X11/bin/xhost` by Homebrew or MacPorts and `/usr/X11/bin/xhost` by direcdt downloading and installation. Make sure you know which is controlling or try both, e.g. 
 
