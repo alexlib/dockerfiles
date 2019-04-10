@@ -41,6 +41,7 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
 
 ## Installation with Docker image from DockerHub, on Mac OS X
 1. Install Docker https://docs.docker.com/docker-for-mac/
+2. Install XQuartz (if you use Homebrew, then `brew cask install xquartz`) or from https://www.xquartz.org/
 2. Run in the Terminal for about 5 min (it's approximately 900 Mb download)  
 
        docker pull alexlib/openptv-python
