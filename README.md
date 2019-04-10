@@ -44,29 +44,31 @@ If you get an error about `cbrt`, run this line (note the ' ' ) to fix it:
 2. Run in the Terminal for about 5 min (it's approximately 900 Mb download)  
 
        docker pull alexlib/openptv-python
-       
-3. Find out your IP using (here XX.XX.XXX.XXX):  
-
-       IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-       
-4. Run XQuartz  
+              
+3. Run XQuartz and approve connections: 
 
        open -a XQuartz
 
-Warning: check that XQuartz -> Preferences -> Security has both options checked in: Allow Network Connections should be ON.
+Check that XQuartz -> Preferences -> Security has both options checked in: Allow Network Connections should be ON.
 
-5. Add IP to the list of known hosts
+4. Find out your IP and display number:  
 
-       xhost + $IP
+       ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+       display_number=`ps -ef | grep "Xquartz :\d" | grep -v xinit | awk '{ print $9; }'`
+
+
+5. Add the IP to the list of known hosts:
+
+       /usr/X11/bin/xhost + $ip
        
-Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/X11/xhost` by Homebrew or MacPorts and `/usr/X11/bin/xhost` by direcdt downloading and installation. Make sure you know which is controlling or try both, e.g. 
+Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/X11/bin/xhost` by Homebrew or MacPorts and `/usr/X11/bin/xhost` by direcdt downloading and installation. Make sure you know which is controlling or try both, e.g. 
 
        /usr/X11/bin/xhost + $IP
        /opt/X11/bin/xhost + $IP
        
 6. Run the docker image  
 
-       docker run -it --name=openptv -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users alexlib/openptv-python  
+       docker run -it --name=openptv -e DISPLAY=$ip$display_number -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users:/host/Users alexlib/openptv-python  
        
 You should see now the PyPTV window open (see below)
 
@@ -74,7 +76,7 @@ Warning: some users reported that it's better to open `xterm` and type the follo
 
        open -a XQuartz
        
-and inside `xterm` try:
+and inside (!) `xterm` try:
 
        xhost + 127.0.0.1
        docker run --rm -it -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix alexlib/openptv-python
