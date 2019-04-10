@@ -68,7 +68,7 @@ Warning: on some machines there were two `xhost` commands installed, e.g. `/opt/
        
 6. Run the docker image  
 
-       docker run -it --name=openptv -e DISPLAY=$ip$display_number -v /tmp/.X11-unix:/tmp/.X11-unix alexlib/openptv-python  
+       docker run --rm -it -e DISPLAY=$ip$display_number -v /tmp/.X11-unix:/tmp/.X11-unix alexlib/openptv-python  
        
 You should see now the PyPTV window open (see below)
 
