@@ -20,7 +20,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
        docker run -d -p 5901:5901 -p 6901:6901 alexlib/openptv-python
        
 4. Open your browser with the link: http://localhost:6901/vnc.html
-5. Click on the connect - enter the default password:  `vncpassword`
+5. Click on the connect - enter the default password: `vncpassword`
 6. Open: `Applications -> Terminal` and type:
 
        ptvgui test_cavity
