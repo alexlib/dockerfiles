@@ -25,7 +25,8 @@ not require full VM like our Virtualbox image (3.5 Gb)
 
        ptvgui test_cavity
 
-7. Dont' forget the remove the container that might run in the background:
+7. Dont' forget the remove the container that might run in the background:  
+
        docker stop $(docker ps -a -q)
        docker rm $(docker ps -a -q) 
 
