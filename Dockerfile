@@ -28,7 +28,7 @@ RUN apt-get update && \
 
 RUN pip install --upgrade pip
 RUN pip install numpy==1.16.1 cython nose pyyaml fonttools
-RUN pip install optv==0.2.4
+RUN pip install optv==0.2.5
 RUN pip install enable
 RUN pip install chaco
 
