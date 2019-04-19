@@ -22,21 +22,23 @@ USER 0
 
 # Prerequisites
 RUN apt-get update && \
-    apt-get install -y python python-pip python-dev git && \
-    apt-get -y install python-qt4-gl libx11-dev g++ libpcre3 libpcre3-dev swig && \
+    apt-get install -y python3 python3-pip python3-dev libqt4-dev git && \
+    apt-get -y install python3-pyqt4 python3-pyqt4.qtopengl libx11-dev g++ libpcre3 libpcre3-dev swig && \
     apt-get -y install libglu1-mesa libgl1-mesa-dev mesa-common-dev freeglut3-dev libgtk2.0-dev
 
-RUN pip install --upgrade pip
-RUN pip install numpy==1.16.1 cython nose pyyaml fonttools
+RUN pip3 install --upgrade pip
+RUN pip install setuptools numpy==1.16.1 cython nose pyyaml fonttools
 RUN pip install optv==0.2.5
 RUN pip install enable
 RUN pip install chaco
+RUN pip install scikit-image
+RUN pip install pygments
 
 
 
 RUN git clone --depth 1 -b master --single-branch https://github.com/alexlib/pyptv.git && \
     cd pyptv && \
-    pip install . && \
+    python3 setup.py install && \
     cd tests && \
     nosetests --verbose
 
