@@ -23,7 +23,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
 5. Click on the connect - enter the default password: `vncpassword`
 6. Open: `Applications -> Terminal` and type:
 
-       ptvgui test_cavity
+       pyptv test_cavity
 
 7. Dont' forget the remove the container that might run in the background:  
 
@@ -44,7 +44,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
 4. Click on the connect - enter the default password:  vncpassword
 5. Open: `Applications -> Terminal` and type: 
              
-       ptvgui test_cavity
+       pyptv test_cavity
 
 ### Dont' forget the remove the container that might run in the background: 
 
