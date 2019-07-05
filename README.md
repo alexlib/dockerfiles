@@ -19,7 +19,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
        docker pull alexlib/openptv-python
        docker run -p 6080:80 -v /dev/shm:/dev/shm alexlib/openptv-python
        
-4. Open your browser with the link: http://localhost:6800/
+4. Open your browser with the link: http://127.0.0.1:6080/
 5. Open: `Applications -> Terminal` and type:
 
        pyptv test_cavity
@@ -38,7 +38,7 @@ not require full VM like our Virtualbox image (3.5 Gb)
 
        docker build -t openptv-vnc .
        docker run -p 6080:80 -v /dev/shm:/dev/shm openptv-vnc
-       open http://localhost:6080/
+       open http://127.0.0.1:6080/
 
 4. Open: `Applications -> Terminal` and type: 
              
