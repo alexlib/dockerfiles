@@ -8,7 +8,7 @@
 # Click on the connect - enter the default password:  vncpassword
 # Open: Applications -> Terminal
 # Type: 
-# ptvgui test_cavity
+# pyptv test_cavity
 # 
 # Dont' forget the remove the container that might run in the background: 
 # docker stop $(docker ps -a -q)
