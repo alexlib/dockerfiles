@@ -27,20 +27,8 @@ RUN apt-get update && \
     apt-get -y install libglu1-mesa libgl1-mesa-dev mesa-common-dev freeglut3-dev libgtk2.0-dev
 
 RUN pip3 install --upgrade pip
-RUN pip install setuptools numpy==1.16.1 cython nose pyyaml fonttools
-RUN pip install optv==0.2.5
-RUN pip install enable
-RUN pip install chaco
-RUN pip install scikit-image
-RUN pip install pygments
-
-
-
-RUN git clone --depth 1 -b master --single-branch https://github.com/alexlib/pyptv.git && \
-    cd pyptv && \
-    python3 setup.py install && \
-    cd tests && \
-    nosetests --verbose
+RUN pip install setuptools numpy
+RUN pip install pyptv --index-url https://pypi.fury.io/pyptv --extra-index-url https://pypi.org/simple
 
 USER 1000
 
