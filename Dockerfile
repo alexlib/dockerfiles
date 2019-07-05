@@ -15,7 +15,7 @@
 # docker rm $(docker ps -a -q)
 
 FROM consol/ubuntu-xfce-vnc
-ENV REFRESHED_AT 2018-03-18
+ENV REFRESHED_AT 2019-07-05
 
 # Switch to root user to install additional software
 USER 0
@@ -27,7 +27,7 @@ RUN apt-get update && \
     apt-get -y install libglu1-mesa libgl1-mesa-dev mesa-common-dev freeglut3-dev libgtk2.0-dev
 
 RUN pip3 install --upgrade pip
-RUN pip install setuptools numpy
+RUN pip install numpy
 RUN pip install pyptv --index-url https://pypi.fury.io/pyptv --extra-index-url https://pypi.org/simple
 
 USER 1000
