@@ -17,15 +17,14 @@ not require full VM like our Virtualbox image (3.5 Gb)
 3. Run and wait for about 5 min (it's approximately 900 Mb download)  
 
        docker pull alexlib/openptv-python
-       docker run -d -p 5901:5901 -p 6901:6901 alexlib/openptv-python
+       docker run -p 6080:80 -v /dev/shm:/dev/shm alexlib/openptv-python
        
-4. Open your browser with the link: http://localhost:6901/vnc.html
-5. Click on the connect - enter the default password: `vncpassword`
-6. Open: `Applications -> Terminal` and type:
+4. Open your browser with the link: http://localhost:6800/
+5. Open: `Applications -> Terminal` and type:
 
        pyptv test_cavity
 
-7. Dont' forget the remove the container that might run in the background:  
+6. Dont' forget the remove the container that might run in the background:  
 
        docker stop $(docker ps -a -q)
        docker rm $(docker ps -a -q) 
@@ -38,11 +37,10 @@ not require full VM like our Virtualbox image (3.5 Gb)
 3. Unzip it and run the in the terminal:  
 
        docker build -t openptv-vnc .
-       docker run -d -p 5901:5901 -p 6901:6901 openptv-vnc
-       open http://localhost:6901/vnc.html
+       docker run -p 6080:80 -v /dev/shm:/dev/shm openptv-vnc
+       open http://localhost:6080/
 
-4. Click on the connect - enter the default password:  vncpassword
-5. Open: `Applications -> Terminal` and type: 
+4. Open: `Applications -> Terminal` and type: 
              
        pyptv test_cavity
 
