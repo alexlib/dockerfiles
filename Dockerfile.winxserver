@@ -1,0 +1,56 @@
+# This is a Dockerfile for Windows 10
+# First get and install XServer, e.g. free one
+# 
+# XServer for Windows:
+# https://sourceforge.net/projects/vcxsrv/
+
+# Run it with default settings: 
+# Multiple windows
+# No client start
+# Default on the last set of options
+
+# Install Docker Desktop for Windows
+# Run it
+
+
+# How to use this Dockerfile:
+#   git clone https://github.com/alexlib/dockerfiles
+#   docker build -f Dockerfile.winxserver -t docker-gui .
+#   
+# Run the image from the Docker Desktop Images tab
+
+# When the xterm appears, type:
+#
+#   pyptv test_cavity
+# 
+# Dont' forget the remove the container that might run in the background: 
+# docker stop $(docker ps -a -q)
+# docker rm $(docker ps -a -q)
+#
+# Read about possible configurations on https://hub.docker.com/r/dorowu/ubuntu-desktop-lxde-vnc
+
+# from https://www.youtube.com/watch?v=BDilFZ9C9mw
+
+FROM enthought/edm-ubuntu-18.04:3.0.1
+
+# Fix timezone issue
+# ENV TZ=Europe/London
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+WORKDIR /app
+ENV EDM_ROOT_DIRECTORY=/app/edm
+
+COPY . .
+
+RUN apt-get update && \
+    apt-get install xterm git g++ -y
+
+RUN edm install numpy scipy cython pyyaml nose chaco enable pyqt5 -y 
+RUN git clone --depth 1 -b master --single-branch https://github.com/OpenPTV/test_cavity.git
+RUN git clone https://github.com/OpenPTV/openptv
+RUN git clone https://github.com/OpenPTV/pyptv
+
+# Switch to root user to install additional software
+ENV DISPLAY=host.docker.internal:0.0
+
+
+CMD xterm
