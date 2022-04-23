@@ -32,13 +32,7 @@ USER root
 RUN apt-get update && apt-get install -y \
     bzip2 \
     ca-certificates \
-    curl \
-    wget \
-    git \
-    g++ \
-    libx11-dev \
-    libqt5gui5 \
-    libglu1-mesa-dev \   
+    curl \ 
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 ARG TARGETARCH
@@ -50,6 +44,15 @@ RUN test "$TARGETARCH" = 'amd64' && export ARCH='64'; \
 
 FROM $BASE_IMAGE
 
+USER root
+RUN apt-get update && apt-get install -y \
+    git \
+    g++ \
+    libx11-dev \
+    libqt5gui5 \
+    libglu1-mesa-dev \   
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
+
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV ENV_NAME="base"
 ENV MAMBA_ROOT_PREFIX="/opt/conda"
@@ -59,9 +62,11 @@ COPY --from=stage1 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certific
 COPY --from=stage1 /tmp/bin/micromamba "$MAMBA_EXE"
 
 ARG MAMBA_USER=mambauser
-ARG MAMBA_USER_ID=0
-ARG MAMBA_USER_GID=0
+ARG MAMBA_USER_ID=1000
+ARG MAMBA_USER_GID=1000
 ENV MAMBA_USER=$MAMBA_USER
+
+USER root
 
 RUN echo "source /usr/local/bin/_activate_current_env.sh" >> ~/.bashrc && \
     echo "source /usr/local/bin/_activate_current_env.sh" >> /etc/skel/.bashrc && \
@@ -79,6 +84,7 @@ WORKDIR /tmp
 # Script which launches commands passed to "docker run"
 COPY _entrypoint.sh /usr/local/bin/_entrypoint.sh
 COPY _activate_current_env.sh /usr/local/bin/_activate_current_env.sh
+
 ENTRYPOINT ["/usr/local/bin/_entrypoint.sh"]
 
 # Default command for "docker run"
