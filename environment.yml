@@ -1,4 +1,4 @@
-name: base
+name: pyptv
 channels:
   - conda-forge
   - defaults
@@ -25,13 +25,13 @@ dependencies:
   - tzdata
   - wheel
   - xz
-  - swig=3.0.12
+  - swig
   - pyqt
+  - traits
+  - traitsui
   - pip:
     - --index-url https://pypi.fury.io/pyptv --extra-index-url https://pypi.org/simple
-    - enable
+    - git+https://github.com/enthought/enable
     - chaco
     - optv==0.2.6a0
     - git+https://github.com/alexlib/pyptv
-  
-  prefix: /opt/conda
