@@ -13,15 +13,16 @@ not require full VM like our Virtualbox image (3.5 Gb)
 
 ## Installation with Docker image from DockerHub, on Windows
 1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
-2. Open PowerShell in Adminstrative Mode
+2. Open PowerShell or Command Prompt
 3. Run and wait for about 5 min (it's approximately 900 Mb download)  
 
        docker pull alexlib/openptv-python
-       docker run -p 6080:80 -v /dev/shm:/dev/shm alexlib/openptv-python
+       docker run -p 25901:5901 -p 26901:6901 -v /dev/shm:/dev/shm alexlib/openptv-python
        
-4. Open your browser with the link: http://127.0.0.1:6080/
-5. Open: `Applications -> Terminal` and type:
+4. Open your browser with the link: http://localhost:26901/vnc_lite.html?password=headless
+5. Open: `Applications -> Terminal` (command shell) and type:
 
+       source /venv/bin/activate
        pyptv test_cavity
 
 6. Dont' forget the remove the container that might run in the background:  
