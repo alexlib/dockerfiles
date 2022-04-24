@@ -1,6 +1,6 @@
 # How to use this Dockerfile
-#   docker build -t openptv_vnc -f Dockerfile .  --no-cache
-#   docker run -p 25901:5901 -p 26901:6901 -v /dev/shm:/dev/shm openptv_vnc
+#   docker build -t openptv-python -f Dockerfile .  --no-cache
+#   docker run -p 25901:5901 -p 26901:6901 -v /dev/shm:/dev/shm openptv-python
 #
 # Open your browser with the link: 
 #
