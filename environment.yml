@@ -15,8 +15,9 @@ dependencies:
   - pillow
   - pip
   - pygments
-  - python=3.8
-  - pyyaml>=5.4
+  - pyparsing
+  - python
+  - pyyaml
   - scikit-image
   - setuptools
   - six
@@ -29,9 +30,10 @@ dependencies:
   - pyqt
   - traits
   - traitsui
+  - tqdm
   - pip:
     - --index-url https://pypi.fury.io/pyptv --extra-index-url https://pypi.org/simple
     - git+https://github.com/enthought/enable
     - chaco
-    - optv==0.2.6a0
+    - optv
     - git+https://github.com/alexlib/pyptv
